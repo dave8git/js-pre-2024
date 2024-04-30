@@ -33,15 +33,21 @@ const randomNo = Math.floor(Math.random() * 3 + 1);
 
 console.log('Wylosowana liczba to: ' + randomNo);
 
-let computerMove = 'nieznany ruch'; 
+ 
 
-if(randomNo === 1) {
-    computerMove = 'kamień';
-} else if (randomNo === 2) {
-    computerMove = 'papier'; 
-} else if (randomNo === 3) {
-    computerMove = 'nożyce';
+function getMoveName(number) {
+    if(number == 1) {
+        return 'kamień';
+    } else if (number == 2) {
+        return 'papier'; 
+    } else if (number == 3) {
+        return 'nożyce';
+    } else {
+        return 'nieznany ruch'
+    }
 }
+
+let computerMove = getMoveName(randomNo);
 
 
 printMessage('Mój ruch to: ' + computerMove);
@@ -50,26 +56,32 @@ let playerInput = prompt('Wybierz swój ruch! 1: kamień, 2: papier, 3: nożyce.
 
 console.log('Gracz wpisał: ' + playerInput);
 
-let playerMove = 'nieznany ruch';
+let playerMove = getMoveName(playerInput);
 
-if(playerInput == '1') {
-    playerMove = 'kamień';
-} else if (playerInput == '2') {
-    playerMove = 'papier'; 
-} else if (playerInput == '3') {
-    playerMove = 'nożyce';
-} 
+console.log(getMoveName(playerInput));
+2
+// if(playerInput == '1') {
+//     playerMove = 'kamień';
+// } else if (playerInput == '2') {
+//     playerMove = 'papier'; 
+// } else if (playerInput == '3') {
+//     playerMove = 'nożyce';
+// } 
 
 printMessage('Twój ruch to: ' + playerMove);
 
-if(playerMove !== 'nieznany ruch') {
-    if((computerMove == 'kamień' && playerMove == 'nożyce') || (computerMove == 'nożyce' && playerMove == 'papier') || (computerMove == 'papier' && playerMove == 'kamień')) {
-        printMessage('Komputer wygrywa!');
-    } else if (computerMove == playerMove) {
-        printMessage('It\' a draw');
+function displayResult(computerMove, playerMove) {
+    if(playerMove !== 'nieznany ruch') {
+        if((computerMove == 'kamień' && playerMove == 'nożyce') || (computerMove == 'nożyce' && playerMove == 'papier') || (computerMove == 'papier' && playerMove == 'kamień')) {
+            printMessage('Komputer wygrywa!');
+        } else if (computerMove == playerMove) {
+            printMessage('It\' a draw');
+        } else {
+            printMessage('You win!');
+        }
     } else {
-        printMessage('You win!');
+        printMessage('Nieznany ruch!');
     }
-} else {
-    printMessage('Nieznany ruch!');
 }
+
+displayResult(computerMove, playerMove);
