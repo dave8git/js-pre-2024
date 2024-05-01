@@ -1,13 +1,13 @@
 {
-    function playGame(number) {
+    const playGame = function(number) {
         clearMessages();
-        function printMessage(msg){
+        const printMessage = function(msg){
             const div = document.createElement('div');
             div.innerHTML = msg;
             document.getElementById('messages').appendChild(div);
         }
 
-        function clearMessages(){
+        const clearMessages = function(){
             document.getElementById('messages').innerHTML = '';
         }
         
@@ -27,7 +27,7 @@
    
         //printMessage('Twój ruch to: ' + playerMove);
         
-        function displayResult(number) {
+        const displayResult = function(number) {
             const randomNo = Math.floor(Math.random() * 3 + 1);
             const computerMove = getMoveName(randomNo);
             const playerMove = getMoveName(number);
